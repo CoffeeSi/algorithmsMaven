@@ -8,7 +8,7 @@ public class QuickSort {
         quickSort(arr, 0, arr.length-1);
     }
 
-    public static int partition(int[] arr, int l, int r) {
+    private static int partition(int[] arr, int l, int r) {
         Random rand = new Random();
         
         int pivotIndex = rand.nextInt(r - l + 1) + l;
@@ -26,7 +26,7 @@ public class QuickSort {
         return i+1;
     }
 
-    public static void quickSort(int[] arr, int l, int r) {
+    private static void quickSort(int[] arr, int l, int r) {
         while (l < r) {
             int part = partition(arr, l, r);
             if (part - l < r - part) {
