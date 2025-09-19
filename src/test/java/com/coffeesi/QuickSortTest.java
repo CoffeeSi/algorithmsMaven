@@ -32,8 +32,10 @@ public class QuickSortTest {
     @Test
     public void testNegativeNumbers() {
         int[] actuals = {-20, 23, -12, 3, 0, -43, 43};
-        int[] expecteds = Arrays.copyOf(actuals, actuals.length);
         QuickSort.sort(actuals);
+        int[] expecteds = Arrays.copyOf(actuals, actuals.length);
+        Arrays.sort(expecteds);
+        assertArrayEquals(expecteds, actuals);
     }
 
     @Test
