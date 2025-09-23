@@ -2,8 +2,7 @@ package com.coffeesi;
 
 public class DeterministicSelect {
     public static int select(int[] arr, int k) {
-        if (arr == null || arr.length == 0)
-            throw new IllegalArgumentException("array empty");
+        Utils.guardNotNull(arr);
         if (k < 0 || k >= arr.length)
             throw new IllegalArgumentException("key out of range");
         return deterministicSelect(arr, 0, arr.length-1, k);
@@ -50,34 +49,15 @@ public class DeterministicSelect {
         
         return deterministicSelect(medians, 0, medians.length - 1, medians.length / 2);
     }
-    
+
     private static int partition(int[] arr, int left, int right, int pivot) {
-        int pivotIndex = left;
         for (int i = left; i <= right; i++) {
             if (arr[i] == pivot) {
-                pivotIndex = i;
+                Utils.swap(arr, i, right);
                 break;
             }
         }
-        swap(arr, pivotIndex, right);
-
-        int temp = left;
-        for (int i = left; i < right; i++) {
-            if (arr[i] < pivot) {
-                swap(arr, i, temp);
-                temp++;
-            }
-        }
-        swap(arr, temp, right);
-        return temp;
-    }
-
-    private static void swap(int[] arr, int i, int j) {
-        if (i != j) {
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
+        return Utils.partition(arr, left, right);
     }
     
     private static void insertionSort(int[] arr, int left, int right) {
