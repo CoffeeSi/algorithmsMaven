@@ -1,6 +1,7 @@
 package com.coffeesi;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertThrows;
 
 import java.util.Random;
 import java.util.Arrays;
@@ -10,9 +11,8 @@ public class QuickSortTest {
 
     @Test
     public void testEmptyArray() {
-        int[] actuals = {};
-        QuickSort.sort(actuals);
-        assertArrayEquals(new int[]{}, actuals);
+        assertThrows(IllegalArgumentException.class, 
+                () -> QuickSort.sort(new int[]{}));
     }
 
     @Test
