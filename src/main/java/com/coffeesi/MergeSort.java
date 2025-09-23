@@ -7,7 +7,7 @@ public class MergeSort {
     private static final int CUTOFF_THRESHOLD = 16;
 
     public static void sort(int[] arr) {
-        if (arr == null || arr.length < 2) return;
+        Utils.guardNotNull(arr);
         int[] buffer = new int[arr.length];
         mergeSort(arr, buffer, 0, arr.length - 1);
     }
