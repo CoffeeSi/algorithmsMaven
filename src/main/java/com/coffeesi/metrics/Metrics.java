@@ -43,7 +43,7 @@ public class Metrics {
         startTime = System.nanoTime();
     }
 
-    public void stopTime() {
+    public void stopTimer() {
         duration = System.nanoTime() - startTime;
     }
 
