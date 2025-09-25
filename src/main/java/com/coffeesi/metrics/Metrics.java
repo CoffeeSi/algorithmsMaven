@@ -15,7 +15,7 @@ public class Metrics {
     public Metrics(String filename) {
         this.filename = filename + ".csv";
         try (FileWriter writer = new FileWriter(this.filename)) {
-            writer.write("algorithm,comparisons,allocations,depth,time\n");
+            writer.write("algorithm,comparisons,allocations,depth,timeMs\n");
         } catch (IOException e) {
             throw new RuntimeException("Failed to initialize CSV file", e);
         }
@@ -43,7 +43,7 @@ public class Metrics {
         startTime = System.nanoTime();
     }
 
-    public void stopTime() {
+    public void stopTimer() {
         duration = System.nanoTime() - startTime;
     }
 
@@ -72,11 +72,10 @@ public class Metrics {
         duration = 0;
     }
 
-    public void writeToCSV(String algorithm, long comparisons, 
-                    long allocations, int depth, long time) {
+    public void writeToCSV(String algorithm) {
         try (FileWriter writer = new FileWriter(filename,true)) {
             writer.write(String.format("%s,%d,%d,%d,%d%n", 
-                algorithm, comparisons, allocations, depth, time));
+                algorithm, comparisons, allocations, maxDepth, duration));
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
