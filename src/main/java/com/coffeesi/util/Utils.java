@@ -1,4 +1,4 @@
-package com.coffeesi;
+package com.coffeesi.util;
 
 import java.util.Random;
 
