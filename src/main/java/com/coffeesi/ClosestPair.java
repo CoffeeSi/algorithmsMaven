@@ -69,6 +69,21 @@ public class ClosestPair {
             tmp[k++] = a[j++];
     }
 
+    public static double bruteForce(Point[] pts) {
+        double min = Double.POSITIVE_INFINITY;
+        for (int i = 0; i < pts.length; i++) {
+            for (int j = i + 1; j < pts.length; j++) {
+                double dx = pts[i].x - pts[j].x;
+                double dy = pts[i].y - pts[j].y;
+                double d = Math.sqrt(dx * dx + dy * dy);
+                if (d < min) {
+                    min = d;
+                }
+            }
+        }
+        return min;
+    }
+
     public static void main(String[] args) {
         Point[] pts = { new Point(2, 3), 
                         new Point(12, 30), 
