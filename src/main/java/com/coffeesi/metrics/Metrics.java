@@ -74,7 +74,7 @@ public class Metrics {
 
     public void writeToCSV(String algorithm) {
         try (FileWriter writer = new FileWriter(filename,true)) {
-            writer.write(String.format("%s,%d,%d,%d,%d%n", 
+            writer.write(String.format("%s,%d,%d,%d,%.4f%n", 
                 algorithm, getComparisons(), getAllocations(), getMaxDepth(), getDurationMs()));
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
