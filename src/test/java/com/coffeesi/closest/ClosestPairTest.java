@@ -13,7 +13,8 @@ public class ClosestPairTest {
     
     @Test
     public void testSimpleCase() {
-        Metrics metrics = new Metrics("closest");
+        Metrics metrics = new Metrics("test");
+        metrics.setN(6);
         Point[] points = { 
             new Point(2, 3), 
             new Point(12, 30), 
@@ -29,7 +30,8 @@ public class ClosestPairTest {
 
     @Test
     public void testTwoPoints() {
-        Metrics metrics = new Metrics("closest");
+        Metrics metrics = new Metrics("test");
+        metrics.setN(2);
         Point[] pts = {
             new Point(0, 0),
             new Point(3, 4)
@@ -40,7 +42,8 @@ public class ClosestPairTest {
 
     @Test
     public void testIdenticalPoints() {
-        Metrics metrics = new Metrics("closest");
+        Metrics metrics = new Metrics("test");
+        metrics.setN(3);
         Point[] pts = {
             new Point(1, 1),
             new Point(1, 1),
@@ -52,7 +55,8 @@ public class ClosestPairTest {
 
     @Test
     public void testGridPoints() {
-        Metrics metrics = new Metrics("closest");
+        Metrics metrics = new Metrics("test");
+        metrics.setN(4);
         Point[] pts = {
             new Point(0, 0),
             new Point(0, 1),
@@ -65,7 +69,8 @@ public class ClosestPairTest {
 
     @Test
     public void testKnownCase() {
-        Metrics metrics = new Metrics("closest");
+        Metrics metrics = new Metrics("test");
+        metrics.setN(6);
         Point[] pts = {
             new Point(2, 3),
             new Point(12, 30),
@@ -80,8 +85,9 @@ public class ClosestPairTest {
 
     @Test
     public void test100RandomPoints() {
-        Metrics metrics = new Metrics("closest");
-        Random rand = new Random(42);
+        Metrics metrics = new Metrics("test");
+        metrics.setN(100);
+        Random rand = new Random();
         Point[] pts = new Point[100];
         for (int i = 0; i < pts.length; i++) {
             int x = rand.nextInt(1000);
@@ -97,7 +103,7 @@ public class ClosestPairTest {
 
     @Test
     public void testClosestPairSmallN() {
-        Metrics metrics = new Metrics("closest");
+        Metrics metrics = new Metrics("test");
         Random rand = new Random();
         for (int n = 10; n <= 200; n += 50) {
             ClosestPair.Point[] pts = new ClosestPair.Point[n];
@@ -114,7 +120,7 @@ public class ClosestPairTest {
 
     @Test
     public void testClosestPairLargeN() {
-        Metrics metrics = new Metrics("closest");
+        Metrics metrics = new Metrics("test");
         int n = 100000;
         Random rand = new Random();
         ClosestPair.Point[] pts = new ClosestPair.Point[n];
