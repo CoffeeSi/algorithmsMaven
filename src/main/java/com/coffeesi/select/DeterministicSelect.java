@@ -1,4 +1,4 @@
-package com.coffeesi;
+package com.coffeesi.select;
 
 import com.coffeesi.util.Utils;
 import com.coffeesi.metrics.Metrics;
