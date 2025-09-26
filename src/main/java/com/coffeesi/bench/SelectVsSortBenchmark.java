@@ -11,7 +11,7 @@ import com.coffeesi.select.DeterministicSelect;
 @State(Scope.Thread)
 public class SelectVsSortBenchmark {
 
-    @Param({"10", "100", "1000"})
+    @Param({"100", "1000", "10000"})
     private int n;
 
     private int[] randomArray;
