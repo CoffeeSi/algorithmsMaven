@@ -1,7 +1,6 @@
 package com.coffeesi.mergesort;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertThrows;
 
 import java.util.Random;
 import java.util.Arrays;
@@ -14,8 +13,9 @@ public class MergeSortTest {
     @Test
     public void testEmptyArray() {
         Metrics m = new Metrics("test");
-        assertThrows(IllegalArgumentException.class, 
-                () -> MergeSort.sort(new int[]{}, m));
+        int[] actuals = {};
+        MergeSort.sort(actuals, m);
+        assertArrayEquals(new int[]{}, actuals);
     }
 
     @Test
