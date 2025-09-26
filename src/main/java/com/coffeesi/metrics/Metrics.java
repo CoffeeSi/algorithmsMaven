@@ -1,5 +1,6 @@
 package com.coffeesi.metrics;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -9,13 +10,19 @@ public class Metrics {
     private long allocations = 0;
     private int currentDepth = 0;
     private int maxDepth = 0;
+    private int n = 0;
     private double startTime = 0;
     private double duration = 0;
 
     public Metrics(String filename) {
         this.filename = filename + ".csv";
-        try (FileWriter writer = new FileWriter(this.filename)) {
-            writer.write("algorithm,comparisons,allocations,depth,timeMs\n");
+
+        File file = new File(this.filename);
+        boolean writeHeader = (!file.exists() || file.length() == 0);
+
+        try (FileWriter writer = new FileWriter(this.filename, true)) {
+            if (writeHeader)
+                writer.write("algorithm,n,comparisons,allocations,depth,timeMs\n");
         } catch (IOException e) {
             throw new RuntimeException("Failed to initialize CSV file", e);
         }
@@ -39,6 +46,10 @@ public class Metrics {
         currentDepth--;
     }
 
+    public void setN(int n) {
+        this.n = n;
+    }
+
     public void startTimer() {
         startTime = System.nanoTime();
     }
@@ -59,6 +70,10 @@ public class Metrics {
         return maxDepth;
     }
 
+    public int getN() {
+        return n;
+    }
+
     public double getDurationMs() {
         return duration / 1000000;
     }
@@ -74,8 +89,8 @@ public class Metrics {
 
     public void writeToCSV(String algorithm) {
         try (FileWriter writer = new FileWriter(filename,true)) {
-            writer.write(String.format("%s,%d,%d,%d,%.4f%n", 
-                algorithm, getComparisons(), getAllocations(), getMaxDepth(), getDurationMs()));
+            writer.write(String.format("%s,%d,%d,%d,%d,%.4f%n", 
+                algorithm, getN(), getComparisons(), getAllocations(), getMaxDepth(), getDurationMs()));
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
