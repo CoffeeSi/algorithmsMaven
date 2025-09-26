@@ -46,7 +46,7 @@ public class MergeSortTest {
 
     @Test
     public void test100randomNumbers() {
-        Metrics m = new Metrics("test5");
+        Metrics m = new Metrics("test");
         Random rand = new Random();
         int[] actuals = new int[100];
         for (int i = 0; i < actuals.length; i++) {
