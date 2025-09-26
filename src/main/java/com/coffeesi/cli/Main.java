@@ -14,7 +14,7 @@ public class Main {
         if (args.length == 0) {
             System.out.println("Choose algorithm (mergesort/quicksort/select/closest)");
             System.out.println("java -jar assignment1-1.0.jar [algo] [n]");
-
+            return;
         }
         String cmd = args[0].toLowerCase().strip();
         int amount = (args.length > 1) ? Integer.parseInt(args[1]) : 100;
