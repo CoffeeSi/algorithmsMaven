@@ -9,8 +9,8 @@ public class Metrics {
     private long allocations = 0;
     private int currentDepth = 0;
     private int maxDepth = 0;
-    private long startTime = 0;
-    private long duration = 0;
+    private double startTime = 0;
+    private double duration = 0;
 
     public Metrics(String filename) {
         this.filename = filename + ".csv";
@@ -47,7 +47,7 @@ public class Metrics {
         duration = System.nanoTime() - startTime;
     }
 
-        public long getComparisons() {
+    public long getComparisons() {
         return comparisons;
     }
 
@@ -59,7 +59,7 @@ public class Metrics {
         return maxDepth;
     }
 
-    public long getDurationMs() {
+    public double getDurationMs() {
         return duration / 1000000;
     }
 
@@ -74,8 +74,8 @@ public class Metrics {
 
     public void writeToCSV(String algorithm) {
         try (FileWriter writer = new FileWriter(filename,true)) {
-            writer.write(String.format("%s,%d,%d,%d,%d%n", 
-                algorithm, comparisons, allocations, maxDepth, duration));
+            writer.write(String.format("%s,%d,%d,%d,%.4f%n", 
+                algorithm, getComparisons(), getAllocations(), getMaxDepth(), getDurationMs()));
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
