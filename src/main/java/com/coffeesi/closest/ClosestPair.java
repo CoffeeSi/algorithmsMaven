@@ -29,7 +29,7 @@ public class ClosestPair {
         metrics.startTimer();
         double result = rec(pts, 0, pts.length, metrics);
         metrics.stopTimer();
-        metrics.writeToCSV("Closest Pair");
+        metrics.writeToCSV("ClosestPair");
         return result;
     }
 
