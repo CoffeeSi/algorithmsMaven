@@ -57,10 +57,13 @@ public class MergeSort {
         for (int i = l + 1; i <= r; i++) {
             int key = arr[i];
             int j = i - 1;
-            while (j >= l && arr[j] > key) {
+            while (j >= l) {
                 metrics.addComparisons();
-                arr[j + 1] = arr[j];
-                j--;
+                if (arr[j] > key) {
+                    arr[j + 1] = arr[j];
+                    j--;
+                } else
+                    break;           
             }
             arr[++j] = key;
         }
